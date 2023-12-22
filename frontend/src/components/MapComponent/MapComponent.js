@@ -2,34 +2,21 @@ import React, { useState } from "react";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 import { datePlacemarks } from "../../date/datePlacemarks";
 
-
 const MapWithRoute = () => {
-  const coordinates = [55.755814, 37.617635]; // координаты места
   const [balloonOpen, setBalloonOpen] = useState(false);
-
-  console.log(datePlacemarks[0].cityName);
 
   const handleMarkerClick = () => {
     setBalloonOpen(!balloonOpen);
   };
 
-  const dateBase = datePlacemarks[0].placemarks
-
-
-  const toMap = () => {
-    const link =
-      "https://yandex.ru/maps/213/moscow/?from=api-maps&ll=37.617635%2C55.746036&mode=routes&origin=jsapi_2_1_79&rtext=~55.755814%2C37.617635&rtt=auto&ruri=~&z=13";
-  };
-
   return (
-    <YMaps query={{ apikey: "984dd8e3-bce1-4c23-8839-c0557ac4f7e7" }}>
+    <YMaps query={{ apikey: process.env.REACT_APP_API_KEY_YANDEX_MAP }}>
       <Map
-        defaultState={{ center: coordinates, zoom: 14 }}
+        defaultState={{ center: datePlacemarks[0].cityCoordinates, zoom: 14 }}
         style={{ width: "100%", height: "400px" }}
       >
-
         
-        {dateBase.map((mark) => 
+        {datePlacemarks[0].placemarks.map((mark) => 
           <Placemark
             geometry={mark.coordinates}
             options={{
@@ -37,14 +24,12 @@ const MapWithRoute = () => {
             }}
             properties={{
               balloonContentHeader:
-                `<p>${mark.title}<p/>`,
+                `<h4>${mark.title}</h4>`,
               balloonContentBody:
-                '<img src="img/cinema.jpg" height="100" width="200"> <br/> ' +
-                '<a href="tel:+7-123-456-78-90">+7 (123) 456-78-90</a><br/>' +
-                "<b>Ближайшие сеансы</b> <br/> Сеансов нет.",
+                `<img src="${mark.img}" height="100" width="200"> <br/>` +
+                `<p>${mark.text}</p><br/>`,
               balloonContentFooter:
-                'Информация предоставлена:<br/>OOO "Рога и копыта"' +
-                '<button onClick={window.location.href="https://yandex.ru/maps/213/moscow/?from=api-maps&ll=37.617635%2C55.746036&mode=routes&origin=jsapi_2_1_79&rtext=~55.755814%2C37.617635&rtt=auto&ruri=~&z=13"}>Проложить маршрут<button/>',
+                `<button onClick={window.location.href="https://yandex.ru/maps/213/moscow/?from=api-maps&ll=${mark.coordinates[1]}%2C${mark.coordinates[0]}6&mode=routes&origin=jsapi_2_1_79&rtext=~${mark.coordinates[0]}%2C37.617635&rtt=auto&ruri=~&z=13"}>Проложить маршрут<button/>`,
               hintContent: "Рога и копыта",
             }}
             modules={["geoObject.addon.balloon"]}
