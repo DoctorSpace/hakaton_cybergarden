@@ -68,7 +68,7 @@ const Heard = styled.img`
 `;
 
 const TopRatedCardPlaces = styled.div`
-  margin: 6px 20px 0px 20px;
+  margin: 6px 20px 60px 20px;
 
   display: flex;
   flex-direction: row;

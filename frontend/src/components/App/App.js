@@ -3,6 +3,7 @@ import MainPage from "../MainPage/MainPage";
 import Header from "../Header/Header";
 import PlacesFiel from "../PlacesFiel/PlacesFiel";
 import TopRatedPlaces from "../TopRatedPlaces/TopRatedPlaces";
+import Footer from "../Footer/Footer";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <MainPage />
     <PlacesFiel />
     <TopRatedPlaces />
+    <Footer />
   </div>;
 }
 
