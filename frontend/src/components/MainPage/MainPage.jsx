@@ -12,26 +12,28 @@ const AppWraper = styled.div`
 const MainPage = () => {
 
 
-  const [dots ,setDots] = useState([])
+  const [cityDate ,setCityDate] = useState("")
 
+
+  fetch('https://b8nv7t4w-8000.euw.devtunnels.ms/city_data/?sityName=Taganrog', {mode: 'no-cors'})
 
   useEffect(() => {
-
-    // Получаем все точки
+    // Получаем 3-и массива [точки], [картинки города], [топ 5]
     axios
-      .get("/dots", {})
+      .get("city_data/?sityName=Taganrog", {})
       .then((response) => {
-        setDots(response)
+
+        console.log(response);
+        //setCityDate(response)
       })
       .catch((err) => {console.error(err)})
-
-  }, [dots]);
+  }, [cityDate]);
 
   return (
     <AppWraper>
-      <MapComponent props={dots}/>
-      <PlacesFiel />
-      <TopRatedPlaces />
+      <MapComponent props={cityDate}/>
+      <PlacesFiel props={cityDate}/>
+      <TopRatedPlaces props={cityDate}/>
     </AppWraper>
   );
 };

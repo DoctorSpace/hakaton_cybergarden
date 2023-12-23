@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import useWindowDimensions from "../../utils/useWindowDimensions";
 import heard from "../../images/heard.svg";
 import heardActiv from "../../images/heardActiv.svg";
+import { Link } from "react-router-dom";
 
 import TopPlace1 from "../../images/badTopPlace/TopPlace1.png";
 import TopPlace2 from "../../images/badTopPlace/TopPlace2.png";
@@ -19,14 +20,20 @@ const Title = styled.h3`
 `;
 
 const CardTitle = styled.h3`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 
-  margin-left: 10px; 
+  margin-left: 10px;
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 28px;
+    height: 36px;
+    max-width: 80vw;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #ffffff;
@@ -69,7 +76,6 @@ const Heard = styled.img`
 `;
 
 const Raiting = styled.div`
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,8 +89,7 @@ const Raiting = styled.div`
   color: #fff;
 
   backdrop-filter: blur(5px);
-  background: ${props => props.color};
-
+  background: ${(props) => props.color};
 
   position: absolute;
   top: 10px;
@@ -109,21 +114,22 @@ const TopRatedCardPlaces = styled.div`
 `;
 
 const TopRatedCard = styled.div`
-
   cursor: pointer;
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 226px;
   border-radius: 10px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 17px 0px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
     position: relative;
+    box-shadow: 0;
   }
 `;
 
-const TopRatedPlaces = () => {
-  const {  width } = useWindowDimensions();
+const TopRatedPlaces = (dots) => {
+  const { width } = useWindowDimensions();
 
   const settings = {
     dots: true,
@@ -132,14 +138,13 @@ const TopRatedPlaces = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true, // установите true для автоматической прокрутки
-    autoplaySpeed: 2000, // задайте скорость автоматической прокрутки в миллисекундах
+    autoplaySpeed: 2500, // задайте скорость автоматической прокрутки в миллисекундах
   };
-
 
   const arr = [
     {
       id: 35,
-      title: "Text 1",
+      title: "Text 1 wwf www ss ceve ws vrb wdw vebr wcw",
       img: TopPlace1,
       favorite: false,
       rating: 10,
@@ -174,19 +179,17 @@ const TopRatedPlaces = () => {
     },
   ];
 
-
-  const cheackRaitingColor = (number) =>{
-    if (number > 7){
-      return '#98c0606f'
+  const cheackRaitingColor = (number) => {
+    if (number > 7) {
+      return "#98c0606f";
     }
 
-    if (number > 3){
-      return '#bec06060'
+    if (number > 3) {
+      return "#bec06060";
     }
 
-    return '#c0726081'
-  }
-
+    return "#c0726081";
+  };
 
   return (
     <>
@@ -197,8 +200,12 @@ const TopRatedPlaces = () => {
             {arr.map((item) => (
               <TopRatedCard>
                 <Heard src={item.favorite ? heardActiv : heard} />
-                <Raiting color={cheackRaitingColor(item.rating)}>{item.rating}</Raiting>
-                <Images src={item.img} />
+                <Raiting color={cheackRaitingColor(item.rating)}>
+                  {item.rating}
+                </Raiting>
+                <Link to={`/place/${item.id}`}>
+                  <Images src={item.img} />
+                </Link>
                 <CardTitle>{item.title}</CardTitle>
               </TopRatedCard>
             ))}
@@ -207,8 +214,12 @@ const TopRatedPlaces = () => {
           arr.map((item) => (
             <TopRatedCard>
               <Heard src={item.favorite ? heardActiv : heard} />
-              <Raiting color={cheackRaitingColor(item.rating)}>{item.rating}</Raiting>
-              <Images src={item.img} />
+              <Raiting color={cheackRaitingColor(item.rating)}>
+                {item.rating}
+              </Raiting>
+              <Link to={`/place/${item.id}`}>
+                <Images src={item.img} />
+              </Link>
               <CardTitle>{item.title}</CardTitle>
             </TopRatedCard>
           ))

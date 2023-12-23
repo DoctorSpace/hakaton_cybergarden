@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import person from "../../images/person.svg"
+import person from "../../images/person.svg";
+import place from "../../images/place.svg";
+import Logo from "../../images/Logo.svg";
 import { Link } from "react-router-dom";
 
 const StyledMenu = styled.div`
   height: 80px;
-  box-shadow: 4px 4px 26px 0px rgba(0, 0, 0, 0.20);
-
+  box-shadow: 4px 4px 26px 0px rgba(0, 0, 0, 0.2);
 
   display: flex;
   align-items: center;
@@ -16,23 +17,24 @@ const StyledMenu = styled.div`
   padding-right: 30px;
 `;
 
-
 const HDrow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  gap:20px;
-`
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    gap: 24px;
+  }
+`;
 
 const AppWraper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  font-size: 12px;
 `;
 
 const Images = styled.img`
@@ -40,18 +42,43 @@ const Images = styled.img`
   width: 28px;
   background-size: cover;
   object-fit: cover;
+
+  @media (max-width: 768px) {
+    height: 32px;
+    width: 32px;
+  }
+`;
+
+const ImagesLogo = styled.img`
+  height: 42px;
+  width: 42px;
+  background-size: cover;
+  object-fit: cover;
+`;
+
+const Text = styled.p`
+  font-size: 12px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Header = () => {
   return (
     <StyledMenu>
-      <Link to="/">Куда?</Link>
+      <Link to="/"><ImagesLogo src={Logo} /></Link>
       <HDrow>
-        <Link to="/place">Интересные места</Link>
+        <Link to="/place">
+          <AppWraper>
+            <Images src={place} />
+            <Text>Интересные места</Text>
+          </AppWraper>
+        </Link>
         <Link to="/authorization">
           <AppWraper>
             <Images src={person} />
-            <p>Авторизоваться</p>
+            <Text>Авторизоваться</Text>
           </AppWraper>
         </Link>
       </HDrow>

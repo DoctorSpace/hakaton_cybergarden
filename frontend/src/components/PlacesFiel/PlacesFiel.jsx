@@ -93,7 +93,7 @@ const Text = styled.p`
   left: 10px;
 `;
 
-const PlacesFiel = () => {
+const PlacesFiel = (dots) => {
   return (
     <Places>
       <Title>Популярные направления</Title>
