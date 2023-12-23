@@ -36,12 +36,11 @@ const MapWithRoute = (dots) => {
                 iconImageHref: "ссылка на изображение вашего маркера",
               }}
               properties={{
-                balloonContentHeader: `<h4>${mark.title}</h4>`,
+                balloonContentHeader: `<h4 class="titleMapComp">${mark.title}</h4>`,
                 balloonContentBody:
-                  `<img src="${mark.img}" height="100" width="200"> <br/>` +
-                  `<p>${mark.text}</p><br/>`,
-                balloonContentFooter: `<button onClick={window.location.href="https://yandex.ru/maps/213/moscow/?from=api-maps&ll=${mark.coordinates[1]}%2C${mark.coordinates[0]}6&mode=routes&origin=jsapi_2_1_79&rtext=~${mark.coordinates[0]}%2C37.617635&rtt=auto&ruri=~&z=13"}>Проложить маршрут<button/>`,
-                hintContent: "Рога и копыта",
+                  `<img src="${mark.img}" class="imgMapComp"> <br/>` +
+                  `<p class='textMapComp'>${mark.text}</p><br/>`,
+                balloonContentFooter: `<button class="btnMapComp" onClick={window.location.href="https://yandex.ru/maps/213/moscow/?from=api-maps&ll=${mark.coordinates[1]}%2C${mark.coordinates[0]}6&mode=routes&origin=jsapi_2_1_79&rtext=~${mark.coordinates[0]}%2C37.617635&rtt=auto&ruri=~&z=13"}>Проложить маршрут<button/>`,
               }}
               modules={["geoObject.addon.balloon"]}
               onClick={handleMarkerClick}

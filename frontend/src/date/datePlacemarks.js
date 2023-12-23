@@ -5,9 +5,9 @@ export const datePlacemarks = [
     placemarks: [
       {
         coordinates: [55.755814, 37.617635],
-        title: "Заголовок 1",
+        title: "Заголовок 1 dss wgweg qweg ewbweb vevw vwevw wevwe",
         img: "#",
-        text: "Информация о данном месте, ла ла ла",
+        text: "Информация о данном месте, ла ла ла sssss sss ssss sss ss s  ssss",
       },
       {
         coordinates: [55.758814, 37.619655],
@@ -19,7 +19,7 @@ export const datePlacemarks = [
         coordinates: [55.759814, 37.618644],
         title: "Заголовок 3",
         img: "#",
-        text: "Информация о данном месте, ла ла ла",
+        text: "Информация",
       },
     ],
   },

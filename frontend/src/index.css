@@ -1,3 +1,6 @@
 /* Fonts */
 @import url("./vendor/fonts.css");
 @import url("./vendor/normalize.css");
+
+/* MapComponent */
+@import url("./components/MapComponent/MapComponent.css");
