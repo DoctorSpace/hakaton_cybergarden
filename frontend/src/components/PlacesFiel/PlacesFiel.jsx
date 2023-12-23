@@ -14,7 +14,7 @@ const Places = styled.div`
   font-size: 12px;
   gap: 10px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 20px 200px 200px 200px;
+  grid-template-rows: 20px 180px 180px 180px;
   grid-template-areas:
     "z z z z"
     "a b d e"
@@ -23,7 +23,7 @@ const Places = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 20px 120px 120px 120px;
+    grid-template-rows: 20px 160px 160px 160px;
     grid-template-areas:
       "z z z"
       "a a b"
