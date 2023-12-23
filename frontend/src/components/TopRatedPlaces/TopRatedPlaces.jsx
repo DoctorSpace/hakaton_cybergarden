@@ -19,6 +19,8 @@ const Title = styled.h3`
 `;
 
 const CardTitle = styled.h3`
+
+  margin-left: 10px; 
   @media (max-width: 768px) {
     display: flex;
     justify-content: center;
@@ -36,7 +38,6 @@ const CardTitle = styled.h3`
 
     position: absolute;
     bottom: 10px;
-    left: 10px;
   }
 `;
 
@@ -67,6 +68,34 @@ const Heard = styled.img`
   }
 `;
 
+const Raiting = styled.div`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+
+  height: 26px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  color: #fff;
+
+  backdrop-filter: blur(5px);
+  background: ${props => props.color};
+
+
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  @media (max-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+`;
+
 const TopRatedCardPlaces = styled.div`
   margin: 6px 20px 60px 20px;
 
@@ -80,6 +109,8 @@ const TopRatedCardPlaces = styled.div`
 `;
 
 const TopRatedCard = styled.div`
+
+  cursor: pointer;
   position: relative;
   width: 100%;
   height: 200px;
@@ -92,7 +123,7 @@ const TopRatedCard = styled.div`
 `;
 
 const TopRatedPlaces = () => {
-  const { height, width } = useWindowDimensions();
+  const {  width } = useWindowDimensions();
 
   const settings = {
     dots: true,
@@ -104,33 +135,58 @@ const TopRatedPlaces = () => {
     autoplaySpeed: 2000, // задайте скорость автоматической прокрутки в миллисекундах
   };
 
+
   const arr = [
     {
+      id: 35,
       title: "Text 1",
       img: TopPlace1,
       favorite: false,
+      rating: 10,
     },
     {
+      id: 3,
       title: "Text 2",
       img: TopPlace2,
       favorite: false,
+      rating: 8,
     },
     {
+      id: 23,
       title: "Text 3",
       img: TopPlace3,
       favorite: true,
+      rating: 10,
     },
     {
+      id: 53,
       title: "Text 4",
       img: TopPlace4,
       favorite: false,
+      rating: 3,
     },
     {
+      id: 5,
       title: "Text 5",
       img: TopPlace5,
       favorite: false,
+      rating: 4,
     },
   ];
+
+
+  const cheackRaitingColor = (number) =>{
+    if (number > 7){
+      return '#98c0606f'
+    }
+
+    if (number > 3){
+      return '#bec06060'
+    }
+
+    return '#c0726081'
+  }
+
 
   return (
     <>
@@ -141,6 +197,7 @@ const TopRatedPlaces = () => {
             {arr.map((item) => (
               <TopRatedCard>
                 <Heard src={item.favorite ? heardActiv : heard} />
+                <Raiting color={cheackRaitingColor(item.rating)}>{item.rating}</Raiting>
                 <Images src={item.img} />
                 <CardTitle>{item.title}</CardTitle>
               </TopRatedCard>
@@ -150,6 +207,7 @@ const TopRatedPlaces = () => {
           arr.map((item) => (
             <TopRatedCard>
               <Heard src={item.favorite ? heardActiv : heard} />
+              <Raiting color={cheackRaitingColor(item.rating)}>{item.rating}</Raiting>
               <Images src={item.img} />
               <CardTitle>{item.title}</CardTitle>
             </TopRatedCard>

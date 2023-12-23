@@ -121,6 +121,9 @@ const PlacesFiel = () => {
         <Text>Красивые места</Text>
         <Images src={datePlacesFiel.Beautiful} />
       </Beautiful>
+
+
+
     </Places>
   );
 };

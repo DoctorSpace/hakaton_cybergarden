@@ -11,11 +11,11 @@ const FooterInfo = styled.div`
 
   border-radius: 10px;
 
-  margin: 0 30px 0 30px;
+  margin: 40px 30px 0 30px;
 `;
 
 
-const MapWithRoute = () => {
+const MapWithRoute = (dots) => {
   const [balloonOpen, setBalloonOpen] = useState(false);
 
   const handleMarkerClick = () => {
