@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import authPic from "../../images/authPic.jpg"
 
 const AuthContainer = styled.div`
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
 
-  height: 80vh;
+  height: 600px;
   gap: 0;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ImgContent = styled.img`
@@ -15,6 +20,10 @@ const ImgContent = styled.img`
   height: 100%;
 
   min-height: 400px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const AuthContent = styled.div`
@@ -53,6 +62,7 @@ const AuthImport = styled.input`
 
   border: 1px solid #2600ff;
   background-color: #fff;
+
 `;
 
 const AuthButton = styled.input`
@@ -67,7 +77,11 @@ const AuthButton = styled.input`
   color: #fff;
 
   border: 0;
-  background-color: #2600ff;
+  background-color: #699BF7;
+
+  &:hover{
+    background-color: #85affe;
+  }
 `;
 
 const RadioContainer = styled.div`
@@ -121,7 +135,7 @@ const AuthorizationPage = () => {
 
   return (
     <AuthContainer>
-      <ImgContent />
+      <ImgContent src={authPic}/>
       <AuthContent>
         <h2>{isRegistration ? "Регистрация" : "Аутентификация"}</h2>
 

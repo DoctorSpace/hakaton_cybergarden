@@ -23,7 +23,7 @@ const HDrow = styled.div`
   justify-content: center;
   align-items: center;
 
-  gap: 20px;
+  gap: 36px;
 
   @media (max-width: 768px) {
     gap: 24px;
@@ -58,6 +58,7 @@ const ImagesLogo = styled.img`
 
 const Text = styled.p`
   font-size: 12px;
+  color: #18315f;
 
   @media (max-width: 768px) {
     display: none;
@@ -72,13 +73,13 @@ const Header = () => {
         <Link to="/place">
           <AppWraper>
             <Images src={place} />
-            <Text>Интересные места</Text>
+            <Text>Открытия</Text>
           </AppWraper>
         </Link>
         <Link to="/authorization">
           <AppWraper>
             <Images src={person} />
-            <Text>Авторизоваться</Text>
+            <Text>Войти</Text>
           </AppWraper>
         </Link>
       </HDrow>

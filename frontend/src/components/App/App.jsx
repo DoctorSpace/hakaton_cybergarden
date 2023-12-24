@@ -8,24 +8,25 @@ import AuthorizationPage from "../AuthorizationPage/AuthorizationPage";
 import CreateLocationPage from "../CreateLocationPage/CreateLocationPage";
 import InterestingPlacePage from "../InterestingPlacePage/InterestingPlacePage";
 import CardPage from "../CardPage/CardPage";
+import UserPage from "../UserPage/UserPage";
 
 function App() {
-
-
   let isAuth = false;
 
   return (
     <div className="App">
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/authorization" element={<AuthorizationPage />} />
-          <Route path="/place" element={<InterestingPlacePage />} />
-          <Route path="/place/:id" element={<CardPage />} />
-          <Route path="/create" element={<CreateLocationPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        <Footer props={isAuth} />
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/authorization" element={<AuthorizationPage />} />
+        <Route path="/place" element={<InterestingPlacePage />} />
+        <Route path="/place/:id" element={<CardPage />} />
+        <Route path="/create" element={<CreateLocationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+
+        {isAuth ? <Route path="/profile" element={<UserPage />} /> : null}
+      </Routes>
+      <Footer props={isAuth} />
     </div>
   );
 }

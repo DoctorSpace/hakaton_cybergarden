@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { datePlacesFiel } from "../../date/datePlacesFiel";
+import { Link } from "react-router-dom";
 
 const Title = styled.h3`
   font-size: 18px;
@@ -93,37 +94,54 @@ const Text = styled.p`
   left: 10px;
 `;
 
-const PlacesFiel = (dots) => {
+const PlacesFiel = (img) => {
+
+
   return (
     <Places>
       <Title>Популярные направления</Title>
+
       <Museums>
-        <Text>Музеи</Text>
-        <Images src={datePlacesFiel.Museums} />
+        <Link to="/place?museums">
+          <Text>Музеи</Text>
+          <Images src={img.props[0].Museums} />
+        </Link>
       </Museums>
+
       <Restaurants>
-        <Text>Рестораны</Text>
-        <Images src={datePlacesFiel.Restaurants} />
+        <Link to="/place?restaurants">
+          <Text>Рестораны</Text>
+          <Images src={img.props[0].Restaurants} />
+        </Link>
       </Restaurants>
+
       <Activities>
-        <Text>Активности</Text>
-        <Images src={datePlacesFiel.Activities} />
+        <Link to="/place?activities">
+          <Text>Активности</Text>
+          <Images src={img.props[0].Activities} />
+        </Link>
       </Activities>
+
       <Parks>
-        <Text>Парки</Text>
-        <Images src={datePlacesFiel.Parks} />
+        <Link to="/place?parks">
+          <Text>Парки</Text>
+          <Images src={img.props[0].Parks} />
+        </Link>
       </Parks>
+
       <Stores>
-        <Text>Магазины</Text>
-        <Images src={datePlacesFiel.Stores} />
+        <Link to="/place?stores">
+          <Text>Магазины</Text>
+          <Images src={img.props[0].Stores} />
+        </Link>
       </Stores>
+
       <Beautiful>
-        <Text>Красивые места</Text>
-        <Images src={datePlacesFiel.Beautiful} />
+        <Link to="/place?beautiful">
+          <Text>Красивые места</Text>
+          <Images src={img.props[0].Beautiful} />
+        </Link>
       </Beautiful>
-
-
-
     </Places>
   );
 };

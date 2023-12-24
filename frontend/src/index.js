@@ -13,6 +13,18 @@ const Global = createGlobalStyle`
   font-family: consolas;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;               /* ширина scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: #fff;        /* цвет дорожки */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #699BF7;    /* цвет плашки */
+  border-radius: 20px;       /* закругления плашки */
+  border: 3px solid #fff;  /* padding вокруг плашки */
+}
+
 a, u {
   color: rgba(0, 0, 0);
   text-decoration: none;

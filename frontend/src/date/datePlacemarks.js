@@ -1,10 +1,10 @@
 export const datePlacemarks = [
   {
     cityName: "Москва",
-    cityCoordinates: [55.755814, 37.617635],
+    cityCoordinates: '47.218102,38.925983',
     placemarks: [
       {
-        coordinates: [55.755814, 37.617635],
+        coordinates: '55.755814, 37.617635',
         title: "Заголовок 1 dss wgweg qweg ewbweb vevw vwevw wevwe",
         img: "#",
         text: "Информация о данном месте, ла ла ла sssss sss ssss sss ss s  ssss",

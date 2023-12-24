@@ -190,35 +190,52 @@ const InterestingPlacePage = () => {
     return "#d5664dcb";
   };
 
-  const [places, setPlaces] = useState([]);
+  const [cityName, setCityName] = useState('Taganrog')
+  const [category, setCategory] = useState()
+
+  const [totalPages, setTotalPages] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [page, setPage] = useState(1)
+
+  const [places, setPlaces] = useState(dateGeodiscoveries);
+
+  
+	const getCategory = (newCategory) =>{
+    console.log(newCategory);
+    setCategory(newCategory)
+  }
 
   useEffect(() => {
     // Получаем все Места
     axios
-      .get("/dots", {})
+      .get("/interest_places/?sityName=Taganrog", {
+        params: {
+          _limit: limit,
+          _page: page,
+          category: category,
+          cityName: cityName,
+        },
+      })
       .then((response) => {
-        setPlaces(response);
+        console.log(response.data.name.placemarks);
+
+        setPlaces(response.data.name.placemarks);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [places]);
+  },[limit, category]);
 
   return (
     <Container>
-      <H3>Откройте для себя места</H3>
-
-      <Filtres />
+      <H3>Откройте для себя новые места</H3>
 
       <BlockCategory>
-        <Category>Музеи</Category>
-        <Category>Активности</Category>
-        <Category>Рестораны</Category>
-        <Category>Парки</Category>
+        <Filtres create={getCategory} />
       </BlockCategory>
 
       <BlockContent>
-        {dateGeodiscoveries.map((item) => (
+        {places.map((item) => (
           <Content>
             <Link to={`/place/${item.id}`}>
               <Image src={item.img} />

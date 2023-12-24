@@ -1,7 +1,47 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
-const Filtres = () => {
+const CheaakBoxContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+
+  gap: 10px;
+`;
+
+const LableUI = styled.label`
+  cursor: pointer;
+
+  height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+  font-size: 14px;
+
+  border: 1px solid #000000;
+
+  &:hover {
+    border: 1px solid #0000ff;
+  }
+`;
+
+const InputUI = styled.input`
+  display: none;
+
+  &:checked + ${LableUI} {
+    background: #699BF7;
+    color: #fff;
+  }
+`;
+
+const Filtres = ({create}) => {
   const [filters, setFilters] = useState({
     parks: false,
     museums: false,
@@ -11,6 +51,14 @@ const Filtres = () => {
     beautifulPlaces: false,
   });
 
+  useEffect(() => {
+    const selectedFilters = Object.keys(filters).filter(
+      (filter) => filters[filter]
+    );
+
+    create(selectedFilters)
+  }, [filters]);
+
   const handleCheckboxChange = (filter) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -18,84 +66,68 @@ const Filtres = () => {
     }));
   };
 
-  const handleApplyFilters = () => {
-    const selectedFilters = Object.keys(filters).filter(
-      (filter) => filters[filter]
-    );
-
-    // Отправка запроса Axios с выбранными фильтрами
-    // axios
-    //   .get("https://example.com/api/places", {
-    //     params: { filters: selectedFilters },
-    //   })
-    //   .then((response) => {
-    //     // Обработка ответа
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     // Обработка ошибки
-    //     console.error(error);
-    //   });
-  };
-
   return (
-    <div>
-      <label>
-        <input
+    <CheaakBoxContainer>
+      <div>
+        <InputUI
+          id="parks"
           type="checkbox"
           checked={filters.parks}
-          onChange={() => handleCheckboxChange("парк")}
+          onChange={() => handleCheckboxChange("parks")}
         />
-        Parks
-      </label>
+        <LableUI for="parks">Парки</LableUI>
+      </div>
 
-      <label>
-        <input
+      <div>
+        <InputUI
+          id="museums"
           type="checkbox"
           checked={filters.museums}
           onChange={() => handleCheckboxChange("museums")}
         />
-        museums
-      </label>
+        <LableUI for="museums">Музеи</LableUI>
+      </div>
 
-      <label>
-        <input
+      <div>
+        <InputUI
+          id="activities"
           type="checkbox"
           checked={filters.activities}
           onChange={() => handleCheckboxChange("activities")}
         />
-        activities
-      </label>
+        <LableUI for="activities">Активности</LableUI>
+      </div>
 
-      <label>
-        <input
+      <div>
+        <InputUI
+          id="shops"
           type="checkbox"
           checked={filters.shops}
           onChange={() => handleCheckboxChange("shops")}
         />
-        shops
-      </label>
+        <LableUI for="shops">Магазины</LableUI>
+      </div>
 
-      <label>
-        <input
+      <div>
+        <InputUI
+          id="restaurants"
           type="checkbox"
           checked={filters.restaurants}
           onChange={() => handleCheckboxChange("restaurants")}
         />
-        restaurants
-      </label>
+        <LableUI for="restaurants">Рестораны</LableUI>
+      </div>
 
-      <label>
-        <input
+      <div>
+        <InputUI
+          id="beautifulPlaces"
           type="checkbox"
           checked={filters.beautifulPlaces}
           onChange={() => handleCheckboxChange("beautifulPlaces")}
         />
-        beautifulPlaces
-      </label>
-
-      <button onClick={handleApplyFilters}>Apply Filters</button>
-    </div>
+        <LableUI for="beautifulPlaces">Красивые места</LableUI>
+      </div>
+    </CheaakBoxContainer>
   );
 };
 

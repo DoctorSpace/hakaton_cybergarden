@@ -81,44 +81,56 @@ const BodyPlace = styled.div`
   }
 `;
 
+
+const data = {
+  id: 4,
+  title: "Город 4",
+  img: "#",
+  text: "много много текста",
+  category: "museum",
+  favorite: false,
+  rating: 3,
+};
+
+
 const CardPage = () => {
-  const [place, setPlace] = useState([]);
+  const [place, setPlace] = useState(data);
+
+  let currentURL = window.location.href;
+
+  var parts = currentURL.split('/');
+  var idUrl = parts[parts.length - 1];
 
   useEffect(() => {
     // Получаем Место
     axios
-      .get("/dots", {})
+      .get(`interest_places_by_id/?id=${idUrl}`, {})
       .then((response) => {
-        setPlace(response);
+
+        console.log(response.data.name.placemarks);
+        setPlace(response.data.name.placemarks[0]);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [place]);
+  }, []);
 
-  const data = {
-    id: 4,
-    title: "Город 4",
-    img: "#",
-    text: "много много текста",
-    category: "museum",
-    favorite: false,
-    rating: 3,
-  };
+
+
 
   return (
     <ContainerPlace>
       <HeaderPlace>
         <HeaderPlaceTitel>
-          <Title>Title</Title>
-          <Raiting>({data.rating})</Raiting>
+          <Title>{place.title}</Title>
+          <Raiting>({place.rating})</Raiting>
         </HeaderPlaceTitel>
-        <Heart src={data.favorite ? heardActiv : heard} />
+        <Heart src={place.favourite ? heardActiv : heard} />
       </HeaderPlace>
 
       <BodyPlace>
-        <Image src="#" />
-        <Text>{data.text}</Text>
+        <Image src={place.img} />
+        <Text>{place.text}</Text>
       </BodyPlace>
     </ContainerPlace>
   );

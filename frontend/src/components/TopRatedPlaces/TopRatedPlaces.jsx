@@ -128,8 +128,10 @@ const TopRatedCard = styled.div`
   }
 `;
 
-const TopRatedPlaces = (dots) => {
+const TopRatedPlaces = (TopPlaces) => {
   const { width } = useWindowDimensions();
+
+  console.log(TopPlaces.props);
 
   const settings = {
     dots: true,
@@ -140,6 +142,7 @@ const TopRatedPlaces = (dots) => {
     autoplay: true, // установите true для автоматической прокрутки
     autoplaySpeed: 2500, // задайте скорость автоматической прокрутки в миллисекундах
   };
+
 
   const arr = [
     {
@@ -197,9 +200,9 @@ const TopRatedPlaces = (dots) => {
       <TopRatedCardPlaces>
         {width < 768 ? (
           <Slider {...settings}>
-            {arr.map((item) => (
+            {TopPlaces.props.map((item) => (
               <TopRatedCard>
-                <Heard src={item.favorite ? heardActiv : heard} />
+                <Heard src={item.favourite ? heardActiv : heard} />
                 <Raiting color={cheackRaitingColor(item.rating)}>
                   {item.rating}
                 </Raiting>
@@ -211,9 +214,9 @@ const TopRatedPlaces = (dots) => {
             ))}
           </Slider>
         ) : (
-          arr.map((item) => (
+          TopPlaces.props.map((item) => (
             <TopRatedCard>
-              <Heard src={item.favorite ? heardActiv : heard} />
+              <Heard src={item.favourite ? heardActiv : heard} />
               <Raiting color={cheackRaitingColor(item.rating)}>
                 {item.rating}
               </Raiting>
